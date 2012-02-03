@@ -105,6 +105,40 @@ return((CXMLNodeKind)_node->type); // TODO this isn't 100% accurate!
 	return theStringValue;
 }
 
+- (int)integerValue
+{
+    NSAssert(_node != NULL, @"CXMLNode does not have attached libxml2 _node.");
+    
+    if (_node->type != XML_ATTRIBUTE_NODE)
+        return 0;
+    
+    int retValue = 0;
+    
+    xmlChar *content = _node->children->content;
+    
+    if (sscanf((const char *)content, "%d", &retValue) == 1)
+        return retValue;
+    
+    return 0;
+}
+
+- (float)floatValue
+{
+    NSAssert(_node != NULL, @"CXMLNode does not have attached libxml2 _node.");
+    
+    if (_node->type != XML_ATTRIBUTE_NODE)
+        return 0;
+    
+    float retValue = 0;
+    
+    xmlChar *content = _node->children->content;
+    
+    if (sscanf((const char *)content, "%f", &retValue) == 1)
+        return retValue;
+    
+    return 0;
+}
+
 - (NSUInteger)index
 {
 NSAssert(_node != NULL, @"CXMLNode does not have attached libxml2 _node.");

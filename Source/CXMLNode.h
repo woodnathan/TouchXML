@@ -59,6 +59,8 @@ typedef enum {
 - (CXMLNodeKind)kind;
 - (NSString *)name;
 - (NSString *)stringValue;
+- (int)integerValue;
+- (float)floatValue;
 - (NSUInteger)index;
 - (NSUInteger)level;
 - (CXMLDocument *)rootDocument;
